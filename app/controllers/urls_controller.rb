@@ -15,9 +15,6 @@ class UrlsController < ApplicationController
     @url = Url.new
   end
 
-  # GET /urls/1/edit
-  def edit
-  end
 
   def redirect
     @url.stats.create!(
@@ -40,21 +37,6 @@ class UrlsController < ApplicationController
     else
       render :new
     end
-  end
-
-  # PATCH/PUT /urls/1
-  def update
-    if @url.update(url_params)
-      redirect_to @url, notice: 'Url was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  # DELETE /urls/1
-  def destroy
-    @url.destroy
-    redirect_to urls_url, notice: 'Url was successfully destroyed.'
   end
 
   private
