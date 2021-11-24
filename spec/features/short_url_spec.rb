@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'shorten links' do
+RSpec.describe 'shorten links', js: true do
   it 'allows creation of a short link, which redirects and gathers stats' do
     When "visit the app" do
       visit root_path
@@ -60,7 +60,7 @@ RSpec.describe 'shorten links' do
       expect(
         page.find_all('ul li').map(&:text),
       ).to match([
-        /ID: \d+ CREATED AT: 2021-11-24 \d+:\d+:\d+ UTC REMOTE ADDR: 127.0.0.1 SERVER NAME: www.example.com ACCEPT LANGUAGE: USER AGENT:/
+        /CREATED AT: 2021-11-24 \d+:\d+:\d+ UTC/
       ])
     end
   end
