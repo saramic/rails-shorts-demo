@@ -20,6 +20,14 @@ class UrlsController < ApplicationController
   end
 
   def redirect
+    @url.stats.create!(
+      request: request.headers.to_h.slice(
+        "REMOTE_ADDR",
+        "SERVER_NAME",
+        "HTTP_ACCEPT_LANGUAGE",
+        "HTTP_USER_AGENT",
+      ).to_json
+    )
     redirect_to @url.long, status: :moved_permanently
   end
 
