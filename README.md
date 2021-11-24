@@ -1,24 +1,33 @@
-# README
+# Rails Shorts Demo
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Rails testing for first timers
 
-Things you may want to cover:
+**Adressing**
 
-* Ruby version
+- https://github.com/rails-oceania/melbourne-ruby/issues/187
 
-* System dependencies
+intro to testing in rails
 
-* Configuration
+- add rspec/capybara gems for testing
+- first "End to End" (E2E) "user flow" through your app
+- "arrange" (When) and "assert" (Then) statements
+- make it run in the browser
+- abstract the page with a Page Object Model using
+  [site_prism](https://github.com/site-prism/site_prism) gem
+- delete cruft with assurance of tests
+- how to incrementally build your app
 
-* Database creation
+## Presenters
 
-* Database initialization
+![Sarah Alexander - sjalex78](public/images/sarah-alexander-sjalex78.jpg)
+![Michael Milewski - saramic](public/images/michael-milewski-saramic.jpg)
 
-* How to run the test suite
+## to run
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+bundle exec
+bundle exec rails db:prepare
+bundle exec rails server
+bundle exec rspec # coming soon
+```
 
-* Deployment instructions
-
-* ...
