@@ -146,6 +146,8 @@ GEM
     regexp_parser (2.1.1)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
+    rspec-example_steps (3.1.1)
+      rspec-core (>= 3.0.0)
     rspec-expectations (3.10.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
@@ -200,6 +202,7 @@ DEPENDENCIES
   pry-byebug
   puma (~> 5.0)
   rails (~> 6.1.4, >= 6.1.4.1)
+  rspec-example_steps
   rspec-rails
   sass-rails (>= 6)
   tzinfo-data

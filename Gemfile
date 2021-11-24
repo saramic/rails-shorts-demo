@@ -17,6 +17,7 @@ gem 'sass-rails', '>= 6'
 group :test do
   gem 'capybara'
   gem 'rspec-rails'
+  gem 'rspec-example_steps'
 end
 
 group :development, :test do
