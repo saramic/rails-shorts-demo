@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'shorten links', js: true do
+  around do |example|
+    travel_to Time.zone.local(2021, 11, 20, 10, 10, 0)
+    example.run
+    travel_back
+  end
+
   it 'allows creation of a short link, which redirects and gathers stats' do
     When "visit the app" do
       visit root_path
@@ -60,7 +66,7 @@ RSpec.describe 'shorten links', js: true do
       expect(
         page.find_all('ul li').map(&:text),
       ).to match([
-        /CREATED AT: 2021-11-24 \d+:\d+:\d+ UTC/
+        /CREATED AT: 2021-11-20 10:10:00 UTC/
       ])
     end
   end
