@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Short:</strong>
+  <%= link_to @url.id, redirect_path(@url) %>
+</p>
+<p>
   <strong>Long:</strong>
   <%= @url.long %>
 </p>

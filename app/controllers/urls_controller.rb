@@ -1,5 +1,5 @@
 class UrlsController < ApplicationController
-  before_action :set_url, only: [:show, :edit, :update, :destroy]
+  before_action :set_url, only: [:show, :edit, :redirect, :update, :destroy]
 
   # GET /urls
   def index
@@ -17,6 +17,10 @@ class UrlsController < ApplicationController
 
   # GET /urls/1/edit
   def edit
+  end
+
+  def redirect
+    redirect_to @url.long, status: :moved_permanently
   end
 
   # POST /urls
