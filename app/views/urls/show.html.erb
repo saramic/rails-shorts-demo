@@ -2,7 +2,13 @@
 
 <p>
   <strong>Short:</strong>
-  <%= link_to @url.id, redirect_path(@url) %>
+  <%= link_to(
+    @url.id,
+    redirect_path(@url),
+    data: {
+      testid: "short-url"
+    }
+   ) %>
 </p>
 <p>
   <strong>Long:</strong>
