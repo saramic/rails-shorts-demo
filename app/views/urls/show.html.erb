@@ -8,6 +8,12 @@
   <strong>Long:</strong>
   <%= @url.long %>
 </p>
+<p>
+  <strong>Stats:</strong>
+  <ul>
+    <%= render partial: "stat", collection: @url.stats %>
+  </ul>
+</p>
 
 <%= link_to 'Edit', edit_url_path(@url) %> |
 <%= link_to 'Back', urls_path %>

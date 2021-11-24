@@ -1,0 +1,22 @@
+<li>
+  <pre>
+    <code>
+      ID: <%= stat.id %>
+    </code>
+    <code>
+      CREATED AT: <%= stat.created_at %>
+    </code>
+    <code>
+      REMOTE ADDR: <%= JSON.parse(stat.request)["REMOTE_ADDR"] %>
+    </code>
+    <code>
+      SERVER NAME: <%= JSON.parse(stat.request)["SERVER_NAME"] %>
+    </code>
+    <code>
+      ACCEPT LANGUAGE: <%= JSON.parse(stat.request)["HTTP_ACCEPT_LANGUAGE"]&.split(",")&.first %>
+    </code>
+    <code>
+      USER AGENT: <%= JSON.parse(stat.request)["HTTP_USER_AGENT"]&.split(" ")&.first %>
+    </code>
+  </pre>
+</li>
