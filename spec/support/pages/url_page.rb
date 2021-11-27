@@ -7,5 +7,5 @@ class UrlPage < SitePrism::Page
 
   section :form, UrlForm, 'form[action="/urls"]'
   section :alert, Alert, '#notice'
-  sections :stats, Stats, 'ul li'
+  sections :stats, Stats, 'main ul li'
 end

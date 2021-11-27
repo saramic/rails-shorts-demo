@@ -11,7 +11,11 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="min-h-screen m-0 flex flex-col">
+    <%= render partial: "layouts/navbar" %>
+    <main class="min-h-full flex-1 container m-auto">
+      <%= yield %>
+    </main>
+    <%= render partial: "layouts/footer" %>
   </body>
 </html>
