@@ -1,21 +1,21 @@
 <li>
   <pre>
-    <code>
+    <code data-testid="stat-id">
       ID: <%= stat.id %>
     </code>
-    <code>
+    <code data-testid="created-at">
       CREATED AT: <%= stat.created_at %>
     </code>
-    <code>
+    <code data-testid="remote-addr">
       REMOTE ADDR: <%= JSON.parse(stat.request)["REMOTE_ADDR"] %>
     </code>
-    <code>
+    <code data-testid="server-name">
       SERVER NAME: <%= JSON.parse(stat.request)["SERVER_NAME"] %>
     </code>
-    <code>
+    <code data-testid="accept-language">
       ACCEPT LANGUAGE: <%= JSON.parse(stat.request)["HTTP_ACCEPT_LANGUAGE"]&.split(",")&.first %>
     </code>
-    <code>
+    <code data-testid="user-agent">
       USER AGENT: <%= JSON.parse(stat.request)["HTTP_USER_AGENT"]&.split(" ")&.first %>
     </code>
   </pre>

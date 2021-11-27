@@ -7,33 +7,30 @@ RSpec.describe 'shorten links', js: true do
     travel_back
   end
 
+  let(:root) { Root.new }
+  let(:url_page) { UrlPage.new }
+
   it 'allows creation of a short link, which redirects and gathers stats' do
     When "visit the app" do
-      visit root_path
+      root.load
     end
 
     Then "see there are no links" do
-      expect(
-        page.find_all('tbody tr'),
-      ).to be_empty
+      expect(root.url_links).to be_empty
     end
 
     When "create a shortend link" do
-      click_on('New Url')
-      form = page.find("form[action=\"#{urls_path}\"]")
-      long_url = "#{root_url}?test-1"
-      form.fill_in('Long', with: long_url)
-      form.find('.actions input[type=submit]').click
+      root.new_url.click
+      url_page.form.long.set "#{root_url}?test-1"
+      url_page.form.submit.click
     end
 
     Then "successfully" do
-      expect(
-        page.find('#notice').text,
-      ).to eq 'Url was successfully created.'
+      expect(url_page.alert).to have_text 'Url was successfully created.'
     end
 
     When "visit the shortend link once" do
-      page.find('[data-testid=short-url]').click
+      url_page.short_url.click
     end
 
     Then "confirm the page" do
@@ -43,31 +40,23 @@ RSpec.describe 'shorten links', js: true do
     end
 
     When "visit the app" do
-      visit root_path
+      root.load
     end
 
     Then "see there is 1 link" do
-      expect(
-        page.find_all('tbody tr').map(&:text),
-      ).to match([
-                /\d+ http:\/\/www.example.com\/\?test-1 Show Edit Destroy/
-              ])
+      expect(root.url_links.first).to have_text 'http://www.example.com/?test-1'
     end
 
     When "view the stats for that link" do
-      page
-        .find_all('tbody tr')
-        .find { |row| row.text.include?('1') }
-        .find('a', text: 'Show')
-        .click
+      root.url_links.find { |url_link| url_link.long_url.text.include?('test-1') }.show.click
     end
 
     Then "the see the stats" do
-      expect(
-        page.find_all('ul li').map(&:text),
-      ).to match([
-        /CREATED AT: 2021-11-20 10:10:00 UTC/
-      ])
+      expect(url_page.stats.first.created_at).to have_text "2021-11-20 10:10:00 UTC"
+      expect(url_page.stats.first.remote_addr).to have_text "127.0.0.1"
+      expect(url_page.stats.first.accept_language).to have_text "en-GB"
+      expect(url_page.stats.first.user_agent).to have_text "Mozilla/5.0"
+      expect(url_page.stats.length).to eq 1
     end
   end
 end

@@ -18,6 +18,7 @@ group :test do
   gem 'capybara'
   gem 'rspec-rails'
   gem 'rspec-example_steps'
+  gem 'site_prism'
   gem 'capybara-inline-screenshot'
   gem 'selenium-webdriver'
   gem 'webdrivers'

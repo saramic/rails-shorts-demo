@@ -13,14 +13,14 @@
 
   <tbody>
     <% @urls.each do |url| %>
-      <tr>
-        <td>
+      <tr data-testid="url-link">
+        <td data-testid="url-link-short-url">
           <%= link_to url.id, redirect_path(url) %>
         </td>
-        <td><%= url.long %></td>
-        <td><%= link_to 'Show', url %></td>
-        <td><%= link_to 'Edit', edit_url_path(url) %></td>
-        <td><%= link_to 'Destroy', url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td data-testid="url-link-long-url"><%= url.long %></td>
+        <td data-testid="url-link-action-show"><%= link_to 'Show', url %></td>
+        <td data-testid="url-link-action-edit"><%= link_to 'Edit', edit_url_path(url) %></td>
+        <td data-testid="url-link-action-destroy"><%= link_to 'Destroy', url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
