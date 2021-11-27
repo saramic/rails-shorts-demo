@@ -1,0 +1,49 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+  - rubocop-rake
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.0
+  UseCache: true
+  CacheRootDirectory: .
+  MaxFilesInCache: 10000
+
+Metrics/BlockLength:
+  Description: allow features to be more descriptive and longer
+  Exclude:
+    - "spec/features/**/*"
+
+RSpec/ExampleLength:
+  Description: allow features to be more descriptive and longer
+  Exclude:
+    - "spec/features/**/*"
+
+RSpec/MultipleExpectations:
+  Description: allow features to be more descriptive and longer
+  Exclude:
+    - "spec/features/**/*"
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyMethod:
+  Description: >
+    Expanded format is easier to read and allows for better incremental commits
+    in TDD
+  Enabled: true
+  EnforcedStyle: expanded
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma

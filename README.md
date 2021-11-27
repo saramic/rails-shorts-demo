@@ -28,6 +28,7 @@ intro to testing in rails
 bundle exec
 bundle exec rails db:prepare
 bundle exec rails server
-bundle exec rspec # coming soon
+bundle exec rspec
+bundle exec rubocop
 ```
 
