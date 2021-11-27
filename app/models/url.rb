@@ -1,3 +1,3 @@
 class Url < ApplicationRecord
-  has_many :stats
+  has_many :stats, dependent: :destroy
 end

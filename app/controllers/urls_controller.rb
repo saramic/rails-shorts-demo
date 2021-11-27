@@ -1,5 +1,5 @@
 class UrlsController < ApplicationController
-  before_action :set_url, only: [:show, :edit, :redirect, :update, :destroy]
+  before_action :set_url, only: %i[show redirect]
 
   # GET /urls
   def index
@@ -15,15 +15,14 @@ class UrlsController < ApplicationController
     @url = Url.new
   end
 
-
   def redirect
     @url.stats.create!(
       request: request.headers.to_h.slice(
-        "REMOTE_ADDR",
-        "SERVER_NAME",
-        "HTTP_ACCEPT_LANGUAGE",
-        "HTTP_USER_AGENT",
-      ).to_json
+        'REMOTE_ADDR',
+        'SERVER_NAME',
+        'HTTP_ACCEPT_LANGUAGE',
+        'HTTP_USER_AGENT',
+      ).to_json,
     )
     redirect_to @url.long, status: :moved_permanently
   end
@@ -40,13 +39,14 @@ class UrlsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_url
-      @url = Url.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def url_params
-      params.require(:url).permit(:long)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_url
+    @url = Url.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def url_params
+    params.require(:url).permit(:long)
+  end
 end
