@@ -32,3 +32,11 @@ bundle exec rspec
 bundle exec rubocop
 ```
 
+**handy shortcuts**
+
+```
+make
+make build
+make prettier-fix # apply rubocop and linting
+```
+
