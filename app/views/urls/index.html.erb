@@ -1,6 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Urls</h1>
+<h1 class="font-semibold text-xl mb-2 mt-8 text-blueGray-700">Urls</h1>
 
 <table>
   <thead>
@@ -18,9 +16,29 @@
           <%= link_to url.id, redirect_path(url) %>
         </td>
         <td data-testid="url-link-long-url"><%= url.long %></td>
-        <td data-testid="url-link-action-show"><%= link_to 'Show', url %></td>
-        <td data-testid="url-link-action-edit"><%= link_to 'Edit', edit_url_path(url) %></td>
-        <td data-testid="url-link-action-destroy"><%= link_to 'Destroy', url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td data-testid="url-link-action-show">
+          <%= link_to(
+            'Show',
+            url,
+            class: "text-green-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          ) %>
+        </td>
+        <td data-testid="url-link-action-edit">
+          <%= link_to(
+            'Edit',
+            edit_url_path(url),
+            class: "text-green-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          ) %>
+        </td>
+        <td data-testid="url-link-action-destroy">
+          <%= link_to(
+            'Destroy',
+            url,
+            method: :delete,
+            data: { confirm: 'Are you sure?' },
+            class: "text-green-500 background-transparent font-bold uppercase px-3 py-1 text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          ) %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +46,8 @@
 
 <br>
 
-<%= link_to 'New Url', new_url_path %>
+<%= link_to(
+  'New Url',
+  new_url_path,
+  class: "bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+) %>
