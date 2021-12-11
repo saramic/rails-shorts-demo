@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_24_060911) do
+ActiveRecord::Schema.define(version: 2021_12_11_052436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 2021_11_24_060911) do
     t.string "long"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "webpush_endpoints", force: :cascade do |t|
+    t.string "endpoint"
+    t.string "auth_key", null: false
+    t.string "p256dh_key"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["auth_key"], name: "index_webpush_endpoints_on_auth_key", unique: true
   end
 
   add_foreign_key "stats", "urls"

@@ -1,5 +1,56 @@
 <h1 class="font-semibold text-xl mb-2 mt-8 text-blueGray-700">Urls</h1>
 
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="page-header">
+				<h1>
+					Rails WebPush <small> - Demo</small>
+				</h1>
+			</div> 
+			<button type="button" class="btn btn-default" onclick="sendPush()">
+				Send WebPush
+			</button>
+		</div>
+	</div>
+</div>
+
+<script>
+
+if (navigator.serviceWorker) {
+  const vapidPublicKey = new Uint8Array(<%= Base64.urlsafe_decode64(ENV.fetch("VAPID_PUBLIC_KEY", Rails.application.credentials.config.dig(:web_push, :public_key))).bytes %>);
+  navigator.serviceWorker.register("/serviceworker.js")
+  .then(function(reg) {
+    navigator
+      .serviceWorker
+      .ready
+      .then((serviceWorkerRegistration) => {
+        serviceWorkerRegistration
+          .pushManager
+          .subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: vapidPublicKey,
+          }).then(function(sub) {
+            fetch(
+              "/webpush_endpoints", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": document.querySelector("[name=csrf-token]").content,
+              },
+              body: JSON.stringify(sub)
+            })
+              .then(response => response.json())
+              .then(data => console.log(data))
+          });
+      })
+    console.log("Service worker change, registered the service worker")
+  })
+} else {
+  console.error("Service worker is not supported in this browser");
+}
+</script>
+
 <table>
   <thead>
     <tr>

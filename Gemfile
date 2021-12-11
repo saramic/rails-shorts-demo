@@ -44,3 +44,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem "webpush", "~> 1.1"
+
+gem "serviceworker-rails", "~> 0.6.0"

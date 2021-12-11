@@ -24,6 +24,14 @@ class UrlsController < ApplicationController
         'HTTP_USER_AGENT',
       ).to_json,
     )
+    WebpushEndpoint.all.map do |webpush_endpoint|
+      webpush_endpoint.web_push(
+        {
+          title: "visited",
+          body: "hits #{@url.stats.count}, url: #{@url.long}",
+        }.to_json
+      )
+    end
     redirect_to @url.long, status: :moved_permanently
   end
 
