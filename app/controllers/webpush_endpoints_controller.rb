@@ -1,16 +1,15 @@
 class WebpushEndpointsController < ApplicationController
-
-  def create
+  def create # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     webpush_endpoint = WebpushEndpoint
-      .find_or_initialize_by(
-        auth_key: webpush_endpoint_params[:keys][:auth],
-      )
+                       .find_or_initialize_by(
+                         auth_key: webpush_endpoint_params[:keys][:auth],
+                       )
     webpush_endpoint.update(
-        endpoint: webpush_endpoint_params[:endpoint],
-        p256dh_key: webpush_endpoint_params[:keys][:p256dh],
-      )
+      endpoint: webpush_endpoint_params[:endpoint],
+      p256dh_key: webpush_endpoint_params[:keys][:p256dh],
+    )
     if webpush_endpoint.save
-      render json: webpush_endpoint.attributes.slice("endpoint")
+      render json: webpush_endpoint.attributes.slice('endpoint')
     else
       render json: webpush_endpoint.errors.full_messages
     end
@@ -19,6 +18,6 @@ class WebpushEndpointsController < ApplicationController
   private
 
   def webpush_endpoint_params
-    params.permit(:endpoint, keys: [:auth, :p256dh])
+    params.permit(:endpoint, keys: %i[auth p256dh])
   end
 end

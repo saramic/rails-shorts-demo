@@ -15,7 +15,7 @@ class UrlsController < ApplicationController
     @url = Url.new
   end
 
-  def redirect
+  def redirect # rubocop:disable Metrics/MethodLength
     @url.stats.create!(
       request: request.headers.to_h.slice(
         'REMOTE_ADDR',
@@ -27,9 +27,9 @@ class UrlsController < ApplicationController
     WebpushEndpoint.all.map do |webpush_endpoint|
       webpush_endpoint.web_push(
         {
-          title: "visited",
+          title: 'visited',
           body: "hits #{@url.stats.count}, url: #{@url.long}",
-        }.to_json
+        }.to_json,
       )
     end
     redirect_to @url.long, status: :moved_permanently
