@@ -7,3 +7,7 @@ Capybara.javascript_driver = :selenium_chrome
 Capybara::Screenshot.register_driver(:selenium_chrome) do |driver, path|
   driver.browser.save_screenshot(path)
 end
+
+Capybara.add_selector(:qa) do
+  css { |name| %([data-testid="#{name}"]) }
+end
